@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:dio/dio.dart';
+import 'package:ttt/constans.dart';
 import 'package:ttt/cryptoData.dart';
 import 'package:ttt/homePage.dart';
 
@@ -21,18 +22,7 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Wellcome To Binance",
-          style: TextStyle(
-              color: Color.fromARGB(221, 255, 182, 55),
-              fontWeight: FontWeight.bold,
-              fontSize: 18),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.black,
-      ),
-      backgroundColor: Colors.grey[900],
+      backgroundColor: blackColor,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -43,7 +33,7 @@ class _LoadingState extends State<Loading> {
                 width: 180,
               ),
               SpinKitFadingCircle(
-                color: Color.fromARGB(221, 255, 182, 55),
+                color: greyColor,
                 size: 40,
               )
             ],

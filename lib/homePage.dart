@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Crypto>? cryptoList;
+  bool showSearchText = false;
 
   @override
   void initState() {
@@ -61,6 +62,17 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
+                  ),
+                ),
+              ),
+              Visibility(
+                visible: showSearchText,
+                child: Text(
+                  "...در حال بروز رسانی",
+                  style: TextStyle(
+                    color: greenColor,
+                    fontSize: 12,
+                    fontFamily: 'mh',
                   ),
                 ),
               ),
@@ -151,15 +163,19 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  _fillterList(userInputs) async{
+  _fillterList(userInputs) async {
     List<Crypto> userInput = [];
-    //List<Crypto> = await _getData();
-    if(userInput.isEmpty) {
+    if (userInputs.isEmpty) {
       setState(() {
-        
+        showSearchText = true;
+      });
+      var result = await _getData();
+      setState(() {
+        cryptoList = result;
+        showSearchText = false;
       });
     }
-    
+
     userInput = cryptoList!.where((element) {
       return element.name.toLowerCase().contains(
             userInputs.toLowerCase(),
